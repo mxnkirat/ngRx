@@ -3,13 +3,18 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideStore } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { studentReducers } from './state/student.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
   provideAnimationsAsync(),
   provideStore(),
   provideStoreDevtools(),
-  provideStore({})]
+  provideState({
+    name : 'studentRecords',
+    reducer : studentReducers
+  }),
+  ]
 };
